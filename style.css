@@ -1,0 +1,185 @@
+:root {
+    --fundo-principal: #120d16;
+    --container-bg: #1c1322;
+    --borda-detalhe: #4a274c;
+    --vinho-profundo: #591b34;
+    --dourado: #d4af37;
+    --dourado-hover: #f3c653;
+    --texto-claro: #f4e8d8;
+    --verde-brilho: #00ff66;
+    --vermelho-perigo: #b92b27;
+}
+
+body {
+    font-family: 'Cinzel', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--fundo-principal);
+    background-image: radial-gradient(circle at center, #261633 0%, var(--fundo-principal) 100%);
+    color: var(--texto-claro);
+    margin: 0;
+    padding: 20px;
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 850px;
+    margin: 0 auto;
+    background: var(--container-bg);
+    padding: 30px;
+    border-radius: 12px;
+    border: 2px solid var(--borda-detalhe);
+    box-shadow: 0px 8px 30px rgba(0, 0, 0, 0.7), inset 0 0 15px rgba(212, 175, 55, 0.05);
+}
+
+.header-sistema {
+    text-align: center;
+    border-bottom: 2px solid var(--vinho-profundo);
+    padding-bottom: 15px;
+    margin-bottom: 25px;
+}
+
+h1 {
+    color: var(--dourado);
+    font-size: 2.2rem;
+    letter-spacing: 2px;
+    margin: 0;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+}
+
+.subtitulo {
+    color: #b09bb8;
+    font-size: 0.95rem;
+    margin-top: 5px;
+    letter-spacing: 1px;
+}
+
+h2 {
+    color: var(--dourado);
+    font-size: 1.3rem;
+    border-left: 4px solid var(--vinho-profundo);
+    padding-left: 10px;
+    margin-bottom: 15px;
+}
+
+.card-section {
+    margin-bottom: 30px;
+    padding-bottom: 15px;
+}
+
+.input-group {
+    margin-bottom: 15px;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: bold;
+    color: #e0d0c0;
+    font-size: 0.9rem;
+}
+
+.input-group input, .input-group select {
+    width: 100%;
+    padding: 11px;
+    box-sizing: border-box;
+    border: 1px solid var(--borda-detalhe);
+    background: #110917;
+    color: var(--texto-claro);
+    border-radius: 6px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.input-group input:focus, .input-group select:focus {
+    outline: none;
+    border-color: var(--dourado);
+    box-shadow: 0 0 8px rgba(212, 175, 55, 0.3);
+}
+
+button {
+    width: 100%;
+    padding: 12px;
+    background: linear-gradient(135deg, #782143 0%, var(--vinho-profundo) 100%);
+    color: var(--texto-claro);
+    border: 1px solid var(--dourado);
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    margin-top: 10px;
+    transition: all 0.3s ease;
+}
+
+button:hover {
+    background: linear-gradient(135deg, #962854 0%, #782143 100%);
+    color: #ffffff;
+    box-shadow: 0 0 10px rgba(212, 175, 55, 0.4);
+}
+
+.flex-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+#btn-exportar {
+    width: auto;
+    background: linear-gradient(135deg, #165b33 0%, #0b381f 100%);
+    color: var(--verde-brilho);
+    border: 1px solid var(--verde-brilho);
+    padding: 8px 18px;
+    margin: 0;
+    font-size: 14px;
+}
+
+#btn-exportar:hover {
+    background: linear-gradient(135deg, #1b733f 0%, #165b33 100%);
+    box-shadow: 0 0 12px rgba(0, 255, 102, 0.4);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+th, td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid var(--borda-detalhe);
+}
+
+th {
+    background-color: #110917;
+    color: var(--dourado);
+    font-size: 0.95rem;
+    letter-spacing: 0.5px;
+}
+
+td {
+    font-size: 0.95rem;
+}
+
+.btn-excluir {
+    background: var(--vermelho-perigo);
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    font-size: 12px;
+    width: auto;
+    margin: 0;
+    border-radius: 4px;
+}
+
+.btn-excluir:hover {
+    background: #d93834;
+    box-shadow: 0 0 8px rgba(185, 43, 39, 0.5);
+}
+
+/* Oculta a coluna de ações e o botão ao gerar o PDF */
+@media print {
+    .nao-imprimir {
+        display: none;
+    }
+}
