@@ -177,9 +177,34 @@ td {
     box-shadow: 0 0 8px rgba(185, 43, 39, 0.5);
 }
 
-/* Oculta a coluna de ações e o botão ao gerar o PDF */
+.bloco-jogo {
+    margin-bottom: 35px;
+    background: #0a0a0a;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.bloco-jogo h3 {
+    margin-top: 0;
+    margin-bottom: 12px;
+    color: #f3c653;
+    font-size: 1.2rem;
+    border-bottom: 2px solid #007bff;
+    padding-bottom: 6px;
+}
+
+
+@media print {
+    .bloco-jogo {
+        page-break-inside: avoid;
+        box-shadow: none;
+        padding: 0;
+    }
+}
+
 @media print {
     .nao-imprimir {
-        display: none;
+        display: none !important;
     }
 }

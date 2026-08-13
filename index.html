@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ink Pirates - Controle de Coleção</title>
     <link rel="stylesheet" href="style.css">
-    <!-- Biblioteca para gerar PDF -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 </head>
 <body>
@@ -16,25 +15,23 @@
             <p class="subtitulo">Sistema de Controle de Coleção</p>
         </div>
 
-        <!-- Seção de Cadastro -->
         <section class="card-section">
             <h2>Adicionar Carta</h2>
             <form id="form-carta">
                 <div class="input-group">
                     <label for="card-game">Card Game:</label>
-                    <select id="card-game" required>
-                        <option value="Yu-Gi-Oh!">Yu-Gi-Oh!</option>
-                        <option value="Pokémon TCG">Pokémon TCG</option>
-                        <option value="Magic: The Gathering">Magic: The Gathering</option>
-                        <option value="One Piece TCG">One Piece TCG</option>
-                        <option value="Digimon TCG">Digimon TCG</option>
-                        <option value="Gundam TCG">Gundam TCG</option>
-                        <option value="Dragon Ball Fusion World">Dragon Ball Fusion World</option>
-                        <option value="Flesh and Blood">Flesh and Blood</option>
-                        <option value="Lorcana TCG">Lorcana TCG</option>
-                        <option value="Riftbound TCG">Riftbound TCG</option>
-                        <option value="Naruto TCG">Naruto TCG</option>
-                    </select>
+                    <select id="card-game">
+    <option value="Yu-Gi-Oh!">Yu-Gi-Oh!</option>
+    <option value="Pokémon TCG">Pokémon TCG</option>
+    <option value="Magic: The Gathering">Magic: The Gathering</option>
+    <option value="One Piece TCG">One Piece TCG</option>
+    <option value="Digimon TCG">Digimon TCG</option>
+    <option value="Gundam TCG">Gundam TCG</option>
+    <option value="Dragon Ball Fusion World">Dragon Ball Fusion World</option>
+    <option value="Flesh and Blood">Flesh and Blood</option>
+    <option value="Lorcana TCG">Lorcana TCG</option>
+    <option value="Riftbound TCG">Riftbound TCG</option>
+</select>
                 </div>
 
                 <div class="input-group">
@@ -50,7 +47,6 @@
                 <div class="input-group">
                     <label for="colecao-carta">Coleção / Expansão:</label>
                     <select id="colecao-carta" required>
-                        <!-- Preenchido dinamicamente via JavaScript -->
                     </select>
                 </div>
 
@@ -63,7 +59,6 @@
             </form>
         </section>
 
-        <!-- Seção da Tabela -->
         <section class="card-section">
             <div class="flex-header">
                 <h2>Minhas Cartas</h2>
@@ -78,17 +73,15 @@
                         <th>Número</th>
                         <th>Coleção</th>
                         <th>Qtd</th>
-                        <th class="nao-imprimir">Ações</th>
                     </tr>
                 </thead>
                 <tbody id="tabela-inventario">
-                    <!-- Preenchido via JavaScript -->
                 </tbody>
             </table>
         </section>
     </div>
 
-    <script src="dados.js"></script>
+   <script src="dados.js"></script> 
     <script src="script.js"></script>
 </body>
 </html>
