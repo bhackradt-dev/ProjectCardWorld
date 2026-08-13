@@ -9,7 +9,6 @@ const tabelaInventario = document.getElementById('tabela-inventario');
 let inventario = JSON.parse(localStorage.getItem('tcg_inventario_completo')) || [];
 
 document.addEventListener("DOMContentLoaded", () => {
-    // Tenta carregar imediatamente e reforça caso os dados demorem a carregar
     atualizarCamposPorJogo();
     atualizarSistema();
 });
@@ -23,7 +22,6 @@ function atualizarCamposPorJogo() {
 
     const jogoSelecionado = selectGame.value;
     
-    // Procura a variável em todas as origens possíveis do navegador
     const baseDados = window.dadosPorJogo || (typeof dadosPorJogo !== 'undefined' ? dadosPorJogo : null);
     
     if (!baseDados) {
@@ -71,7 +69,6 @@ function salvarDados() {
     localStorage.setItem('tcg_inventario_completo', JSON.stringify(inventario));
 }
 
-// SEPARA O INVENTÁRIO EM TABELAS DIFERENTES POR CARD GAME
 function atualizarTabelaInventario() {
     const conteinerTabelas = document.getElementById('tabela-para-pdf') || tabelaInventario;
     if (!conteinerTabelas) return;
@@ -83,17 +80,14 @@ function atualizarTabelaInventario() {
         return;
     }
 
-    // Agrupa as cartas por Card Game
     const jogos = {};
     inventario.forEach((carta, index) => {
         if (!jogos[carta.jogo]) jogos[carta.jogo] = [];
         jogos[carta.jogo].push({ ...carta, indexOriginal: index });
     });
 
-    // Ordena os Card Games de A a Z
     const jogosOrdenados = Object.keys(jogos).sort((a, b) => a.localeCompare(b, 'pt-BR', { sensitivity: 'base' }));
 
-    // Cria uma tabela para cada Card Game
     jogosOrdenados.forEach(nomeJogo => {
         const cartas = jogos[nomeJogo];
 
@@ -185,7 +179,6 @@ function gerarPDF() {
     const elementosAcao = tabelaOriginal.querySelectorAll('.nao-imprimir');
     elementosAcao.forEach(el => el.style.display = 'none');
 
-    // Remove qualquer fundo branco forçado das tabelas e linhas na hora do PDF
     const todasLinhasECelulas = tabelaOriginal.querySelectorAll('table, tr, th, td');
     todasLinhasECelulas.forEach(el => {
         el.style.backgroundColor = 'transparent';
