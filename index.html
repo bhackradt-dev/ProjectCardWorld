@@ -21,26 +21,26 @@
                 <div class="input-group">
                     <label for="card-game">Card Game:</label>
                     <select id="card-game">
-                        <option value="Digimon TCG">Digimon TCG</option>
+                        <option value="Digimon">Digimon</option>
                         <option value="Dragon Ball Fusion World">Dragon Ball Fusion World</option> 
                         <option value="Flesh and Blood">Flesh and Blood</option> 
-                        <option value="Gundam TCG">Gundam TCG</option>                 
-                        <option value="Lorcana TCG">Lorcana TCG</option>
+                        <option value="Gundam">Gundam</option>                 
+                        <option value="Lorcana">Lorcana</option>
                         <option value="Magic: The Gathering">Magic: The Gathering</option>
-                        <option value="One Piece TCG">One Piece TCG</option>
-                        <option value="Pokémon TCG">Pokémon TCG</option>
-                        <option value="Riftbound TCG">Riftbound TCG</option>
+                        <option value="One Piece">One Piece</option>
+                        <option value="Pokémon">Pokémon</option>
+                        <option value="Riftbound">Riftbound</option>
                     </select>
                 </div>
 
                 <div class="input-group">
-                    <label for="nome-carta">Nome da Carta:</label>
-                    <input type="text" id="nome-carta" required placeholder="Ex: Roronoa Zoro">
+                    <label for="nome-carta">Nome:</label>
+                    <input type="text" id="nome-carta" required placeholder="Ex: Mago Negro">
                 </div>
 
                 <div class="input-group">
-                    <label for="numero-carta">Número da Carta:</label>
-                    <input type="text" id="numero-carta" required placeholder="Ex: OP01-001">
+                    <label for="numero-carta">Número:</label>
+                    <input type="text" id="numero-carta" required placeholder="">
                 </div>
 
                 <div class="input-group">
@@ -50,11 +50,11 @@
                 </div>
 
                 <div class="input-group">
-                    <label for="qtd-carta">Quantidade Possuída:</label>
+                    <label for="qtd-carta">Quantidade:</label>
                     <input type="number" id="qtd-carta" min="1" value="1" required>
                 </div>
 
-                <button type="submit">Cadastrar na Coleção</button>
+                <button type="submit">Cadastrar</button>
             </form>
         </section>
 
@@ -64,19 +64,22 @@
                 <button id="btn-exportar" onclick="gerarPDF()">Exportar PDF</button>
             </div>
             
-            <table id="tabela-para-pdf">
-                <thead>
-                    <tr>
-                        <th>Jogo</th>
-                        <th>Nome</th>
-                        <th>Número</th>
-                        <th>Coleção</th>
-                        <th>Qtd</th>
-                    </tr>
-                </thead>
-                <tbody id="tabela-inventario">
-                </tbody>
-            </table>
+            <div class="input-group">
+                <label for="filtro-ordenacao">Ordenar por:</label>
+                <select id="filtro-ordenacao" onchange="atualizarSistema()">
+                    <option value="nome-asc">Nome (Crescente A-Z)</option>
+                    <option value="nome-desc">Nome (Decrescente Z-A)</option>
+                    <option value="colecao-asc">Edição / Coleção (Crescente A-Z)</option>
+                    <option value="colecao-desc">Edição / Coleção (Decrescente Z-A)</option>
+                    <option value="ano-asc">Ano da Coleção (Crescente - Mais antigo)</option>
+                    <option value="ano-desc">Ano da Coleção (Decrescente - Mais recente)</option>
+                    <option value="numero-asc">Número da Carta (Crescente)</option>
+                    <option value="numero-desc">Número da Carta (Decrescente)</option>
+                </select>
+            </div>
+
+            <div id="tabela-para-pdf">
+            </div>
         </section>
     </div>
 

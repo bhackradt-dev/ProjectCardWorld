@@ -8,6 +8,7 @@
     --texto-claro: #f4e8d8;
     --verde-brilho: #00ff66;
     --vermelho-perigo: #b92b27;
+    --azul-mudança: #3498db;
 }
 
 body {
@@ -27,7 +28,7 @@ body {
     padding: 30px;
     border-radius: 12px;
     border: 2px solid var(--borda-detalhe);
-    box-shadow: 0px 8px 30px rgba(0, 0, 0, 0.7), inset 0 0 15px rgba(212, 175, 55, 0.05);
+    box-shadow: 0px 8px 30px #00ff66, inset 0 0 15px #591b34;
 }
 
 .header-sistema {
@@ -151,7 +152,7 @@ th, td {
 }
 
 th {
-    background-color: #110917;
+    background-color: ##4a274c;
     color: var(--dourado);
     font-size: 0.95rem;
     letter-spacing: 0.5px;
@@ -188,9 +189,10 @@ td {
 .bloco-jogo h3 {
     margin-top: 0;
     margin-bottom: 12px;
+    background: #0a0a0a;
     color: #f3c653;
     font-size: 1.2rem;
-    border-bottom: 2px solid #007bff;
+    border-bottom: 2px solid #00ff66;
     padding-bottom: 6px;
 }
 
@@ -207,4 +209,27 @@ td {
     .nao-imprimir {
         display: none !important;
     }
+}
+
+.btn-editar {
+    background: var(--azul-mudança);
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    font-size: 12px;
+    width: auto;
+    margin: 0;
+    border-radius: 4px;
+}
+.btn-editar:hover {
+    background: #2980b9;
+    box-shadow: 0 0 8px #0a0a0a;
+}
+
+#filtro-ordenacao {
+    max-width: 300px;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #000000;
 }
