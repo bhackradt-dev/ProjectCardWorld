@@ -8,29 +8,11 @@ const tabelaInventario = document.getElementById('tabela-inventario');
 
 let inventario = JSON.parse(localStorage.getItem('tcg_inventario_completo')) || [];
 
-document.addEventListener("DOMContentLoaded", () => {
-    atualizarCamposPorJogo();
-    atualizarSistema();
-});
-
-if (selectGame) {
-    selectGame.addEventListener('change', atualizarCamposPorJogo);
-}
-
 function atualizarCamposPorJogo() {
     if (!selectGame || !selectColecao) return;
-
-    const jogoSelecionado = selectGame.value;
     
-    const baseDados = window.dadosPorJogo || (typeof dadosPorJogo !== 'undefined' ? dadosPorJogo : null);
-    
-    if (!baseDados) {
-        console.error("ERRO CRÍTICO: A variável 'dadosPorJogo' não existe ou não foi carregada antes do script.js");
-        selectColecao.innerHTML = '<option value="">Erro ao carregar dados</option>';
-        return;
-    }
-
-    const dados = baseDados[jogoSelecionado];
+    const jogoSelecionado = selectGame.value.trim();
+    const dados = typeof dadosPorJogo !== 'undefined' ? dadosPorJogo[jogoSelecionado] : null;
     
     if (dados) {
         if (inputNome) {
@@ -43,36 +25,27 @@ function atualizarCamposPorJogo() {
         }
 
         selectColecao.innerHTML = '';
-
-        if (dados.colecoes && Array.isArray(dados.colecoes) && dados.colecoes.length > 0) {
+        if (dados.colecoes && Array.isArray(dados.colecoes)) {
             dados.colecoes.forEach(col => {
                 const option = document.createElement('option');
                 option.value = col;
                 option.textContent = col;
                 selectColecao.appendChild(option);
             });
-        } else {
-            selectColecao.innerHTML = '<option value="">Sem coleções cadastradas</option>';
         }
     } else {
-        console.warn("Nenhuma coleção bateu com o valor do <select>: '" + jogoSelecionado + "'");
         selectColecao.innerHTML = '<option value="">Sem coleções</option>';
     }
 }
 
 function atualizarSistema() {
     atualizarTabelaInventario();
-    salvarDados();
-}
-
-function salvarDados() {
     localStorage.setItem('tcg_inventario_completo', JSON.stringify(inventario));
 }
 
 function atualizarTabelaInventario() {
     const conteinerTabelas = document.getElementById('tabela-para-pdf') || tabelaInventario;
     if (!conteinerTabelas) return;
-
     conteinerTabelas.innerHTML = '';
 
     if (inventario.length === 0) {
@@ -86,11 +59,8 @@ function atualizarTabelaInventario() {
         jogos[carta.jogo].push({ ...carta, indexOriginal: index });
     });
 
-    const jogosOrdenados = Object.keys(jogos).sort((a, b) => a.localeCompare(b, 'pt-BR', { sensitivity: 'base' }));
-
-    jogosOrdenados.forEach(nomeJogo => {
+    Object.keys(jogos).sort().forEach(nomeJogo => {
         const cartas = jogos[nomeJogo];
-
         const blocoJogo = document.createElement('div');
         blocoJogo.className = 'bloco-jogo';
 
@@ -134,7 +104,6 @@ function atualizarTabelaInventario() {
 if (formCarta) {
     formCarta.addEventListener('submit', (e) => {
         e.preventDefault();
-        
         const nomeCarta = inputNome.value.trim() || inputNome.placeholder.replace("Ex: ", "");
         const numeroCarta = inputNumero.value.trim() || inputNumero.placeholder.replace("Ex: ", "");
 
@@ -170,7 +139,6 @@ function removerInventario(index) {
 
 function gerarPDF() {
     const tabelaOriginal = document.getElementById('tabela-para-pdf') || tabelaInventario;
-
     if (!tabelaOriginal || inventario.length === 0) {
         alert("Cadastre pelo menos uma carta antes de exportar o PDF!");
         return;
@@ -179,35 +147,24 @@ function gerarPDF() {
     const elementosAcao = tabelaOriginal.querySelectorAll('.nao-imprimir');
     elementosAcao.forEach(el => el.style.display = 'none');
 
-    const todasLinhasECelulas = tabelaOriginal.querySelectorAll('table, tr, th, td');
-    todasLinhasECelulas.forEach(el => {
-        el.style.backgroundColor = 'transparent';
-    });
-
     const configuracoes = {
         margin: [10, 10, 10, 10],
         filename: 'Colecao_InkPirates.pdf',
         image: { type: 'jpeg', quality: 0.98 },
-        html2canvas: { 
-            scale: 2, 
-            useCORS: true,
-            backgroundColor: null,
-            scrollY: 0
-        },
+        html2canvas: { scale: 2, useCORS: true },
         jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
     };
 
-    const restaurarEstilosTela = () => {
-        elementosAcao.forEach(el => el.style.display = '');
-        todasLinhasECelulas.forEach(el => {
-            el.style.backgroundColor = '';
-        });
-    };
-
     html2pdf().set(configuracoes).from(tabelaOriginal).save()
-        .then(() => restaurarEstilosTela())
-        .catch(err => {
-            console.error("Erro ao gerar PDF:", err);
-            restaurarEstilosTela();
-        });
+        .then(() => elementosAcao.forEach(el => el.style.display = ''))
+        .catch(() => elementosAcao.forEach(el => el.style.display = ''));
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    atualizarCamposPorJogo();
+    atualizarSistema();
+});
+
+if (selectGame) {
+    selectGame.addEventListener('change', atualizarCamposPorJogo);
 }

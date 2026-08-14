@@ -227,4 +227,5 @@ const dadosPorJogo = {
             "Unleashed (UNL)",
             "Vendetta (VEN)"
         ]
+    }
 };
